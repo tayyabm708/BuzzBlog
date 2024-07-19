@@ -7,6 +7,8 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Projects from "./pages/Projects";
 import Header from "./compnents/Header";
+
+import FooterCom from "./compnents/Footer";
 export default function App() {
   return (
     <div>
@@ -20,6 +22,7 @@ export default function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/projects" element={<Projects />} />
         </Routes>
+        <FooterCom />
       </BrowserRouter>
     </div>
   );
