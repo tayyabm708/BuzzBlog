@@ -10,6 +10,8 @@ import Header from "./compnents/Header";
 
 import FooterCom from "./compnents/Footer";
 import PrivateRoute from "./compnents/PrivateRoute";
+import OnlyAdminPrivateRoute from "./compnents/OnlyAdminPrivateRoute";
+import CreatePost from "./pages/CreatePost";
 export default function App() {
   return (
     <div>
@@ -22,6 +24,9 @@ export default function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+          <Route element={<OnlyAdminPrivateRoute />}>
+            <Route path="/create-post" element={<CreatePost/>} />
           </Route>
           <Route path="/projects" element={<Projects />} />
         </Routes>
