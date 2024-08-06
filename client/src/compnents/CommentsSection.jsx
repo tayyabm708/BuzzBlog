@@ -1,4 +1,4 @@
-import { Button, Textarea, TextInput } from "flowbite-react";
+import { Alert, Button, Textarea, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ export default function CommentsSection({ postId }) {
   const { currentUser } = useSelector((state) => state.user);
 
   const [comment, setComment] = useState("");
+  const [commentError, setCommentError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,20 +15,25 @@ export default function CommentsSection({ postId }) {
       return;
     }
 
-    const res = await fetch("/api/comment/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        content: comment,
-        postId,
-        userId: currentUser._id,
-      }),
-    });
-    const data = await res.json();
-    if (res.ok) {
-      setComment("");
+    try {
+      const res = await fetch("/api/comment/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: comment,
+          postId,
+          userId: currentUser._id,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setComment("");
+        setCommentError(null);
+      }
+    } catch (error) {
+      setCommentError(error.message);
     }
   };
   return (
@@ -75,6 +81,11 @@ export default function CommentsSection({ postId }) {
               Submit
             </Button>
           </div>
+          {commentError && (
+            <Alert color="failure" className="mt-5">
+              {commentError}
+            </Alert>
+          )}
         </form>
       )}
     </div>
