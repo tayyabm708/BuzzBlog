@@ -64,7 +64,7 @@ export default function Header() {
           type='text'
           placeholder='Search...'
           rightIcon={AiOutlineSearch}
-          className=' lg:inline'
+          className=' lg:inline w-28'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
