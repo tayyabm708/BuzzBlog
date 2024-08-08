@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import { Link, useParams } from "react-router-dom";
 import { Button, Spinner } from "flowbite-react";
-import CallToAction from "../compnents/CallToAction";
-import CommentsSection from "../compnents/CommentsSection";
-import PostCard from "../compnents/PostCard";
+import CallToAction from "../components/CallToAction";
+import CommentsSection from "../components/CommentsSection";
+import PostCard from "../components/PostCard";
 
 export default function PostPage() {
   const [recentPosts, setRecentPosts] = useState(null);

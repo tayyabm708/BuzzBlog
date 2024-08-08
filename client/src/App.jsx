@@ -6,15 +6,16 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Projects from "./pages/Projects";
-import Header from "./compnents/Header";
+import Header from "./components/Header";
 
-import FooterCom from "./compnents/Footer";
-import PrivateRoute from "./compnents/PrivateRoute";
-import OnlyAdminPrivateRoute from "./compnents/OnlyAdminPrivateRoute";
+import FooterCom from "./components/Footer";
+import PrivateRoute from "./components/PrivateRoute";
+import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
 import CreatePost from "./pages/CreatePost";
 import UpdatePost from "./pages/UpdatePost";
 import PostPage from "./pages/PostPage";
-import ScrollToTop from "./compnents/ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop";
+import Search from "./pages/Search";
 export default function App() {
   return (
     <div>
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path='/search' element={<Search />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
           </Route>
