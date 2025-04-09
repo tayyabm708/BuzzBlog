@@ -56,7 +56,7 @@ function SignIn() {
               Buzz
             </span>
             Blog
-          </Link>
+          </Link> 
           <p className="text-sm mt-5">
             This is a demo project, You can sign up with your email and password
             or with Google.

@@ -1,4 +1,5 @@
 import express from "express";
+import fs from 'fs';
 import { mongoose } from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
@@ -10,9 +11,17 @@ import path from "path";
 import cookieParser from "cookie-parser";
 
 dotenv.config();
+const dbUriPath = "./secrets/db_uri.txt";
+console.log(dbUriPath)
 
+let mongoURI; // fallback
+if (dbUriPath && fs.existsSync(dbUriPath)) {
+  mongoURI = fs.readFileSync(dbUriPath, 'utf8').trim();
+}
+console.log(mongoURI)
 mongoose
-  .connect(process.env.MONGO)
+  // .connect(process.env.MONGO)
+  .connect("mongodb+srv://tayyabm708:5A5auLJDhh24cYc@buzzblog.qqbush5.mongodb.net/BuzzBlog?retryWrites=true&w=majority&appName=BuzzBlog")
   .then(() => {
     console.log("Connected to the database!");
   })
@@ -27,7 +36,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.listen(3000, () => {
+app.listen(3000,'0.0.0.0', () => {
   console.log("Server is running on port 3000");
 });
 

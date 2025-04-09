@@ -1,0 +1,31 @@
+services:
+  buzzblog:
+    build: .
+    ports:
+      - "3000:3000"  # External:Internal mapping
+    environment:
+      - DB_URI_FILE=/run/secrets/db_uri
+    secrets:
+      - db_uri
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/db_password
+    volumes:
+      - mongo-data:/data/db
+    secrets:
+      - db_password
+
+volumes:
+  mongo-data:
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  db_uri:
+    file: ./secrets/db_uri.txt
