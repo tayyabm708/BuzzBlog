@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+     tools {
+        nodejs 'node18' // use the configured name
+    }
+
+
     environment {
         DOCKER_IMAGE = 'buzzblog-app'
         CONTAINER_NAME = 'buzzblog-container'
